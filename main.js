@@ -4,9 +4,7 @@ import { registro } from "./src/vistas/registro";
 
 console.log('hola');
 
-// import { series } from "./src/datos/series";
 
-// console.log(series);
 
 document.querySelector('header').innerHTML = header.template;
 header.script()

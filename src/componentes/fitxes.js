@@ -12,7 +12,6 @@ export const fitxes = {
         const panelDerechoTitulo = document.querySelector('#panelDerechoTitulo');
         const panelDerechoAno = document.querySelector('#panelDerechoAno');
         const panelDerechoDescripcion = document.querySelector('#panelDerechoDescripcion');
-        const btnBorrarSerie = document.querySelector('#btnBorrarSerie');
     
         // Función para eliminar una carta
         function eliminarCarta(serieId) {
@@ -42,11 +41,23 @@ export const fitxes = {
             title.classList.add('card-title', 'text-center');
             title.textContent = serie.nombre;
     
+            // Crear botón de borrado
+            const btnBorrarSerie = document.createElement('button');
+            btnBorrarSerie.textContent = 'Borrar';
+            btnBorrarSerie.classList.add('btn', 'btn-danger', 'btn-sm', 'mt-2');
+    
+          
+            btnBorrarSerie.addEventListener('click', (event) => {
+                event.stopPropagation();
+                eliminarCarta(serie.nombre);
+            });
+    
             // Añadir el data id para identificar
             card.dataset.id = serie.nombre; 
     
             // Construir la carta
             cardBody.appendChild(title);
+            cardBody.appendChild(btnBorrarSerie);
             card.appendChild(img);
             card.appendChild(cardBody);
             cardColumn.appendChild(card);
@@ -68,21 +79,6 @@ export const fitxes = {
                 panelDerechoAno.textContent = serieSeleccionada.año;
                 panelDerechoDescripcion.textContent = serieSeleccionada.descripcion;
             });
-        });
-
-        // borrar serie
-        btnBorrarSerie.addEventListener('click', () => {
-            // Obtener el data-id de la serie seleccionada en el panel derecho
-            const serieId = panelDerechoTitulo.textContent;
-    
-            // Eliminar la carta correspondiente
-            eliminarCarta(serieId);
-
-            // Limpiar el panel derecho
-            panelDerechoImg.src = 'https://upload.wikimedia.org/wikipedia/en/6/6e/Stranger_Things_characters.png';
-            panelDerechoTitulo.textContent = '';
-            panelDerechoAno.textContent = '';
-            panelDerechoDescripcion.textContent = '';
         });
     }
 }

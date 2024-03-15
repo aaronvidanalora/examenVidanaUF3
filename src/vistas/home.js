@@ -28,7 +28,6 @@ export const home = {
                     </span>
                 </p>
             </div>
-            <button id="btnBorrarSerie" class="btn btn-danger">Borrar Serie</button>
         </div>
     </div>
 </div>
